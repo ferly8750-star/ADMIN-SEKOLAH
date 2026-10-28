@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMBP SmartSchool</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fc;color:#18233d}.layout{display:flex;min-height:100vh}.sidebar{width:230px;background:#14213d;color:white;padding:24px 15px}.brand{font-size:21px;font-weight:bold;margin:0 0 28px}.brand span{color:#75a0ff}.nav{display:block;width:100%;padding:13px;margin:5px 0;border:0;border-radius:8px;text-align:left;color:#dce5f8;background:transparent;cursor:pointer}.nav.active,.nav:hover{background:#2b477d;color:white}.main{flex:1;min-width:0}.top{background:white;padding:22px 28px;border-bottom:1px solid #e5eaf2;display:flex;justify-content:space-between;align-items:center}.top h1{font-size:22px;margin:0}.content{padding:28px}.welcome{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:22px}.welcome h2{margin:0 0 8px}.muted{color:#748097;font-size:13px}.btn{border:0;border-radius:8px;background:#2457d6;color:white;padding:12px 16px;cursor:pointer;font-weight:bold}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}.card,.panel{background:white;border:1px solid #e5eaf2;border-radius:12px;padding:20px}.card .label{color:#748097;font-size:13px}.card h2{font-size:30px;margin:14px 0 8px}.panel{padding:0;overflow:hidden}.panel-head{padding:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #e5eaf2}.panel-head h3{margin:0}.search,input,select{padding:11px;border:1px solid #dce2ed;border-radius:7px;max-width:100%}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:left;padding:15px 20px;border-bottom:1px solid #edf0f5;font-size:13px}th{background:#fafbfe;color:#748097}.badge{padding:6px 9px;border-radius:20px;background:#e4f8ed;color:#167044}.section{display:none}.section.active{display:block}.empty{text-align:center;color:#748097;padding:25px}.footer{text-align:center;color:#748097;font-size:12px;padding:25px}.modal{display:none;position:fixed;inset:0;background:#0007;align-items:center;justify-content:center;padding:16px}.modal.open{display:flex}.modal-box{background:white;border-radius:12px;padding:24px;width:100%;max-width:420px}.field{display:grid;gap:7px;margin:15px 0}.field input,.field select{width:100%}.actions{display:flex;justify-content:flex-end;gap:10px}.secondary{background:#e9edf5;color:#18233d}.info{line-height:1.8;color:#59657a}.hide{display:none!important}@media(max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.layout{display:block}.sidebar{width:100%;padding:16px}.brand{margin-bottom:12px}.navs{display:flex;overflow-x:auto;gap:5px}.nav{white-space:nowrap;width:auto;margin:0;padding:10px}.top{padding:16px}.content{padding:16px 12px}.welcome{align-items:flex-start;flex-direction:column}.stats{gap:9px}.card{padding:13px}.card h2{font-size:25px}.panel-head{align-items:flex-start;flex-direction:column}.search{width:100%}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+<div class="brand">🎓 SMBP <span>SmartSchool</span></div>
+<div class="navs">
+<button class="nav active" data-page="dashboard">🏠 Dashboard</button>
+<button class="nav" data-page="siswa">👨‍🎓 Data Siswa</button>
+<button class="nav" data-page="guru">👩‍🏫 Data Guru</button>
+<button class="nav" data-page="kelas">🏫 Data Kelas</button>
+<button class="nav" data-page="absensi">📋 Absensi</button>
+<button class="nav" data-page="laporan">📊 Laporan</button>
+</div>
+</aside>
+<main class="main">
+<header class="top"><h1 id="title">Dashboard Admin</h1><span>👤 Administrator</span></header>
+<div class="content">
+<section id="dashboard" class="section active">
+<div class="welcome"><div><h2>Selamat Datang, Admin! 👋</h2><p class="muted">Ringkasan administrasi sekolah Anda.</p></div><button class="btn" onclick="openModal()">+ Tambah Siswa</button></div>
+<div class="stats">
+<div class="card"><div class="label">👨‍🎓 Total Siswa</div><h2 id="total">3</h2><div class="muted">Data dalam daftar demo</div></div>
+<div class="card"><div class="label">👩‍🏫 Total Guru</div><h2>48</h2><div class="muted">Data contoh</div></div>
+<div class="card"><div class="label">🏫 Total Kelas</div><h2>24</h2><div class="muted">Rombongan belajar</div></div>
+<div class="card"><div class="label">📋 Kehadiran</div><h2>94%</h2><div class="muted">Data simulasi</div></div>
+</div>
+<div class="panel"><div class="panel-head"><div><h3>Data Siswa Terbaru</h3><p class="muted">Daftar siswa sekolah</p></div><button class="btn" onclick="page('siswa')">Lihat Semua</button></div><div class="table-wrap"><table><thead><tr><th>NIS</th><th>Nama</th><th>Kelas</th><th>Status</th></tr></thead><tbody id="recent"></tbody></table></div></div>
+</section>
+<section id="siswa" class="section">
+<div class="welcome"><div><h2>Manajemen Data Siswa</h2><p class="muted">Tambah, cari, dan kelola data siswa.</p></div><button class="btn" onclick="openModal()">+ Tambah Siswa</button></div>
+<div class="panel"><div class="panel-head"><h3>Daftar Siswa</h3><input class="search" id="search" placeholder="Cari nama atau NIS..." oninput="render()"></div><div class="table-wrap"><table><thead><tr><th>NIS</th><th>Nama</th><th>Kelas</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="students"></tbody></table></div></div>
+</section>
+<section id="guru" class="section"><h2>Data Guru</h2><div class="card info">Total guru: 48 (data contoh). Modul ini dapat dikembangkan untuk mencatat nama, NIP, mata pelajaran, dan status kepegawaian.</div></section>
+<section id="kelas" class="section"><h2>Data Kelas</h2><div class="card info">Total rombongan belajar: 24 (data contoh). Tambahkan tingkat, wali kelas, tahun ajaran, dan jumlah siswa sesuai kebutuhan.</div></section>
+<section id="absensi" class="section"><h2>Absensi Siswa</h2><div class="card info">Ringkasan kehadiran: 94% (simulasi). Aplikasi lengkap dapat mencatat hadir, izin, sakit, dan alpa berdasarkan tanggal.</div></section>
+<section id="laporan" class="section"><div class="welcome"><div><h2>Laporan Sekolah</h2><p class="muted">Ekspor daftar siswa ke CSV.</p></div><button class="btn" onclick="exportCSV()">Unduh CSV</button></div><div class="card info">Data ini merupakan contoh dan tersimpan sementara di halaman browser.</div></section>
+</div>
+<div class="footer">© 2026 SMBP SmartSchool · Sistem Administrasi Sekolah</div>
+</main></div>
+<div class="modal" id="modal"><div class="modal-box"><h3>Tambah Data Siswa</h3><form id="form"><div class="field"><label for="nis">NIS</label><input id="nis" required></div><div class="field"><label for="nama">Nama lengkap</label><input id="nama" required></div><div class="field"><label for="kelasInput">Kelas</label><select id="kelasInput" required><option value="">Pilih kelas</option><option>VII A</option><option>VII B</option><option>VIII A</option><option>VIII B</option><option>IX A</option><option>IX B</option><option>X A</option><option>XI A</option><option>XII A</option></select></div><div class="actions"><button type="button" class="btn secondary" onclick="closeModal()">Batal</button><button class="btn">Simpan</button></div></form></div></div>
+<script>
+const data=[{nis:"1001",nama:"Ahmad Fauzi",kelas:"VII A"},{nis:"1002",nama:"Siti Rahma",kelas:"VII B"},{nis:"1003",nama:"Budi Santoso",kelas:"VIII A"}];
+const titles={dashboard:"Dashboard Admin",siswa:"Manajemen Data Siswa",guru:"Data Guru",kelas:"Data Kelas",absensi:"Absensi Siswa",laporan:"Laporan Sekolah"};
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function page(name){document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===name));document.querySelectorAll(".nav").forEach(b=>b.classList.toggle("active",b.dataset.page===name));document.getElementById("title").textContent=titles[name];if(name==="siswa")render()}
+document.querySelectorAll(".nav").forEach(b=>b.addEventListener("click",()=>page(b.dataset.page)));
+function row(s,actions=false){return "<tr><td>"+safe(s.nis)+"</td><td>"+safe(s.nama)+"</td><td>"+safe(s.kelas)+"</td><td><span class='badge'>Aktif</span></td>"+(actions?"<td><button onclick='removeStudent("+JSON.stringify(s.nis)+")'>Hapus</button></td>":"")+"</tr>"}
+function render(){const q=(document.getElementById("search")?.value||"").toLowerCase();const list=data.filter(s=>(s.nis+" "+s.nama+" "+s.kelas).toLowerCase().includes(q));document.getElementById("students").innerHTML=list.length?list.map(s=>row(s,true)).join(""):"<tr><td colspan='5' class='empty'>Data tidak ditemukan</td></tr>";document.getElementById("recent").innerHTML=data.slice(0,5).map(s=>row(s)).join("");document.getElementById("total").textContent=data.length}
+function openModal(){document.getElementById("modal").classList.add("open")}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+document.getElementById("form").addEventListener("submit",e=>{e.preventDefault();const nis=document.getElementById("nis").value.trim();const nama=document.getElementById("nama").value.trim();const kelas=document.getElementById("kelasInput").value;if(data.some(s=>s.nis===nis)){alert("NIS sudah digunakan");return}data.push({nis,nama,kelas});e.target.reset();closeModal();render();alert("Data ditambahkan ke daftar sementara")});
+function removeStudent(nis){if(confirm("Hapus data siswa ini?")){const i=data.findIndex(s=>s.nis===nis);if(i>=0)data.splice(i,1);render()}}
+function exportCSV(){const csv="\uFEFF"+[["NIS","Nama","Kelas"],...data.map(s=>[s.nis,s.nama,s.kelas])].map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(",")).join("\r\n");const a=document.createElement("a");const u=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.href=u;a.download="data-siswa-smbp.csv";a.click();URL.revokeObjectURL(u)}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+render();
+</script>
+</body>
+</html>
